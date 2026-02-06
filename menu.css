@@ -11,8 +11,38 @@ body {
     margin: 0;
     background: #f7f8fa;
     color: #111;
-    min-width: 1200px; /* Force minimum width */
-    overflow-x: auto; /* Allow horizontal scroll on smaller screens */
+    width: 1200px; /* Fixed width */
+    margin: 0 auto; /* Center on desktop */
+    overflow-x: hidden; /* Prevent horizontal scroll on desktop */
+}
+
+/* When on mobile (smaller than 1200px), allow horizontal scroll */
+@media (max-width: 1199px) {
+    body {
+        margin: 0;
+        overflow-x: auto; /* Allow horizontal scrolling */
+        min-width: 1200px; /* Ensure content stays at 1200px */
+    }
+    
+    /* Optional: Add a subtle indicator that site can scroll */
+    body::before {
+        content: "← Swipe to scroll →";
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        z-index: 1000;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+    }
 }
 
 .number a {
@@ -32,12 +62,12 @@ body {
 }
 
 .container {
-    width: 1200px; /* Fixed width instead of max-width */
-    margin: 0 auto;
+    width: 1200px; /* Fixed width */
     padding: 24px;
+    margin: 0 auto; /* Center on desktop */
 }
 
-/* Header */
+/* The rest of your CSS remains the same as before */
 .header {
     display: flex;
     align-items: center;
@@ -51,13 +81,12 @@ body {
     color: black;
 }
 
-/* Categories */
 .categories {
     display: flex;
     gap: 10px;
-    flex-wrap: nowrap; /* Prevent wrapping */
+    flex-wrap: nowrap;
     margin-bottom: 32px;
-    overflow-x: auto; /* Allow horizontal scroll if needed */
+    overflow-x: auto;
     padding-bottom: 5px;
 }
 
@@ -79,15 +108,14 @@ body {
     cursor: pointer;
     border: 1px solid #eee;
     transition: background 0.2s;
-    white-space: nowrap; /* Prevent text wrapping */
-    flex-shrink: 0; /* Prevent shrinking */
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .category:hover {
     background-color: rgba(255, 234, 0, 0.927);
 }
 
-/* Section title - CENTERED */
 .section-title {
     font-size: 28px;
     font-weight: 700;
@@ -122,19 +150,6 @@ body {
     padding: 0 20px;
 }
 
-/* Add a fade effect on the edges */
-.grid2-container::before,
-.grid2-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100px;
-    z-index: 2;
-    pointer-events: none;
-}
-
-/* Infinite scroll animation */
 @keyframes scrollInfinite {
     0% {
         transform: translateX(0);
@@ -147,12 +162,11 @@ body {
 .grid {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(2, 300px); /* Always 2 columns of 300px */
+    grid-template-columns: repeat(2, 300px);
     gap: 20px;
     justify-content: center;
 }
 
-/* Card styles */
 .card {
     flex: 0 0 auto;
     background: #fff;
@@ -162,7 +176,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 300px; /* Fixed width */
+    width: 300px;
     height: auto;
     transition: transform 0.2s ease;
 }
@@ -220,28 +234,4 @@ body {
 
 .arrow-btn:hover {
     background: #e6e6e6;
-}
-
-
-
-/* Optional: Add a visual indicator for horizontal scrolling on mobile */
-@media (max-width: 1199px) {
-    body::after {
-        content: "← Scroll →";
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 10px 15px;
-        border-radius: 20px;
-        font-size: 14px;
-        z-index: 1000;
-        animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-        0%, 100% { opacity: 0.7; }
-        50% { opacity: 1; }
-    }
 }
