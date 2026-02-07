@@ -11,20 +11,81 @@ body {
     margin: 0;
     background: #f7f8fa;
     color: #111;
-    width: 1200px; /* Fixed width */
-    margin: 0 auto; /* Center on desktop */
-    overflow-x: hidden; /* Prevent horizontal scroll on desktop */
+    width: 1200px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
 }
 
-/* When on mobile (smaller than 1200px), allow horizontal scroll */
+/* Fixed header for mobile */
+.header-fixed {
+    display: none;
+}
+
+/* Mobile styles */
 @media (max-width: 1199px) {
     body {
         margin: 0;
-        overflow-x: auto; /* Allow horizontal scrolling */
-        min-width: 1200px; /* Ensure content stays at 1200px */
+        overflow-x: auto;
+        min-width: 1200px;
+        padding-top: 120px; /* Space for fixed header */
     }
     
-    /* Optional: Add a subtle indicator that site can scroll */
+    /* Fixed header that stays centered in viewport */
+    .header-fixed {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 120px;
+        background: #f7f8fa;
+        z-index: 1000;
+        padding: 10px 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-fixed .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+    
+    .header-fixed .logo img {
+        width: 70px;
+        height: auto;
+        border-radius: 350px;
+    }
+    
+    .header-fixed .logo:last-child {
+        font-weight: 800;
+        font-size: 20px;
+        color: black;
+    }
+    
+    .header-fixed .number a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    .header-fixed .number a:hover {
+        color: rgb(148, 148, 148);
+    }
+    
+    /* Hide the original header in container */
+    .container .header,
+    .container .number {
+        display: none;
+    }
+    
+    /* Optional scroll indicator */
     body::before {
         content: "← Swipe to scroll →";
         position: fixed;
@@ -40,43 +101,33 @@ body {
     }
     
     @keyframes pulse {
-        0%, 100% { opacity: 0.7; }
-        50% { opacity: 1; }
+        0%, 100% {
+            opacity: 0.7;
+        }
+        50% {
+            opacity: 1;
+        }
     }
 }
 
-.number {
+/* Desktop - show original header */
+.container .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-bottom: 20px;
 }
 
-.number a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-}
-
-.number a:hover {
-    color: rgb(148, 148, 148);
-}
-
-.logo img {
+.container .logo img {
     width: 90px;
     height: auto;
     border-radius: 350px;
 }
 
 .container {
-    width: 1200px; /* Fixed width */
+    width: 1200px;
     padding: 24px;
-    margin: 0 auto; /* Center on desktop */
-}
-
-/* The rest of your CSS remains the same as before */
-.header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
+    margin: 0 auto;
 }
 
 .logo {
@@ -85,6 +136,22 @@ body {
     color: black;
 }
 
+/* Original header styling */
+.number a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.number {
+    margin-bottom: 20px;
+}
+
+.number a:hover {
+    color: rgb(148, 148, 148);
+}
+
+/* Rest of your existing CSS remains the same */
 .categories {
     display: flex;
     gap: 10px;
@@ -239,4 +306,3 @@ body {
 .arrow-btn:hover {
     background: #e6e6e6;
 }
-
