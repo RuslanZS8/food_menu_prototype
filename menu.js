@@ -89,15 +89,7 @@ function setupCategoryNavigation() {
             }
         });
     });
-
-    // Add click handlers for arrow buttons
-    const arrowButtons = document.querySelectorAll('.arrow-btn');
-    arrowButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const card = this.closest('.card');
-            const itemName = card.querySelector('h3').textContent;
-            alert(`Added to cart: ${itemName}`);
-            // Here you would normally add to cart functionality
-        });
+}
     });
+
 }
