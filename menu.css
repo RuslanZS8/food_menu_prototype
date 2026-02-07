@@ -45,6 +45,10 @@ body {
     }
 }
 
+.number {
+    margin-bottom: 20px;
+}
+
 .number a {
     text-decoration: none;
     color: inherit;
@@ -235,3 +239,4 @@ body {
 .arrow-btn:hover {
     background: #e6e6e6;
 }
+
